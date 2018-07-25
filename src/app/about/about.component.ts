@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
   <div class="main-grid container-grid">
     <div class="responsive-picture picture-1">
-      <img src="../../assets/Adrianne2018.jpeg">
+      <img src="../../ahl-angular/assets/img/Adrianne2018.jpeg">
     </div>
     <div class="container-grid container-1">
       <p class="paragraph paragraph-1">
