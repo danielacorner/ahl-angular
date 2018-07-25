@@ -55,6 +55,12 @@ import { Component, OnInit } from '@angular/core';
         margin-left: 0;
       }
 
+      .container-grid.container-1 {
+        grid-area: 3/2 / auto / 4;
+      }
+
+      /* Image */
+
       div.responsive-picture.picture-1 {
         margin-top: 35px;
         margin-bottom: 20px;
@@ -71,17 +77,36 @@ import { Component, OnInit } from '@angular/core';
       }
 
       div.responsive-picture.picture-1 > img {
-        width: 46.2%;
+        width: 100%;
         position: absolute;
         bottom: 0;
         border: 5px solid black;
       }
 
-      .container-grid.container-1 {
-        grid-area: 3/2 / auto / 4;
-      }
-
       @media screen and (min-width: 62rem) {
+        /* Image */
+
+        div.responsive-picture.picture-1 {
+          margin-top: 35px;
+          margin-bottom: 20px;
+          max-width: none;
+          width: 36%;
+
+          grid-area: 2/2 / auto / auto;
+          -webkit-align-self: flex-end;
+          -ms-flex-item-align: end;
+          align-self: flex-end;
+          justify-self: auto;
+          position: relative;
+        }
+
+        div.responsive-picture.picture-1 > img {
+          width: 100%;
+          position: absolute;
+          bottom: 0;
+          border: 5px solid black;
+        }
+
         /* Text Elements */
 
         p.paragraph.paragraph-1 {
@@ -106,8 +131,8 @@ import { Component, OnInit } from '@angular/core';
         }
 
         .container-grid.main-grid {
-          grid-template-columns: auto 41vw;
-          grid-template-rows: 33.2vw auto;
+          grid-template-columns: auto 42vw;
+          grid-template-rows: 21.2vw auto;
         }
 
         .container-grid.container-1 {

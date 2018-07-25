@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material';
 import * as $ from 'jquery';
+import { ProjectsService } from '../projects.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ import * as $ from 'jquery';
 
     <span class="grid-item"></span>
 
-    <span class="grid-item">Adrianne H Lee</span>
+    <span class="grid-item valign-wrapper"><a class="title" routerLink="/about">Adrianne H Lee</a></span>
 
     <span class="grid-item"></span>
 
@@ -19,7 +20,7 @@ import * as $ from 'jquery';
       <a class="nav-link nav-link-full" routerLink="/about">
 			About</a>
       <div class="dropdown">
-        <a class="nav-link nav-link-full" routerLink="/work">
+        <a class="nav-link nav-link-full dropdown-link" routerLink="/work">
         Work&nbsp;<mat-icon>arrow_drop_down</mat-icon>
         </a>
         <div id="work-dropdown-full">
@@ -42,6 +43,12 @@ import * as $ from 'jquery';
     `
       .navbar {
         background: black;
+      }
+      .title {
+        cursor: pointer;
+        font-size: 32px;
+        color: #ece9e7;
+        font-weight: 500;
       }
       .example-icon {
         padding: 0 14px;
@@ -71,7 +78,7 @@ import * as $ from 'jquery';
         position: absolute;
         right: 10%;
         top: 64px;
-        height: 195px;
+        height: auto;
         pointer-events: none;
         background: white;
         width: 240px;
@@ -91,10 +98,11 @@ import * as $ from 'jquery';
         transition: color 0.4s ease-in-out;
         display: block;
         margin-right: 0px;
-        font-weight: 500;
-        text-decoration: underline;
+        font-family: 'PT serif', gentium-book-basic, serif;
+        text-decoration: none;
         padding: 10px 5%;
         width: 50vw;
+        position: relative;
       }
       a.nav-link-full {
         text-decoration: none;
@@ -109,6 +117,11 @@ import * as $ from 'jquery';
         display: inline;
         padding-bottom: 30px;
         transition: opacity 0.45s ease-in-out;
+        font-family: "PT serif", gentium-book-basic, serif;
+      }
+      .dropdown-link {
+        display: flex;
+        align-items: center;
       }
       .dropdown:hover #work-dropdown-full {
         pointer-events: auto;
@@ -121,28 +134,33 @@ import * as $ from 'jquery';
         text-decoration: none;
         font-weight: 600;
         font-size: 14px;
-        line-height: 3em;
+        line-height: 2em;
       }
       .dropdown-content-large:hover {
         color: black;
         text-decoration: none;
-        background: #f9f9f9;
+        background: #ece9e7;
         transition: background 0.4s ease-in-out;
       }
       li.work-dropdown-item {
         list-style-type: none;
         padding-left: 5px;
       }
+      a.nav-link,
+      mat-icon {
+        font-size: 14.5px;
+        font-weight: 500;
+      }
+      mat-icon {
+        position: absolute;
+        top: 21px;
+        right: -13px;
+      }
     `
   ]
 })
 export class NavbarComponent implements OnInit {
-
-  public projects = [
-    { title: 'Services Catalogue', route: 'services-catalogue' },
-    { title: 'Financial Products Selector', route: 'financial-products-selector' },
-    { title: 'The Store', route: 'the-store' },
-  ];
+  public projects = [];
   // @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
   // open() {
@@ -168,7 +186,9 @@ export class NavbarComponent implements OnInit {
   //     < button mat - menu - item > Financial Products Selector < /button>
   //       < button mat - menu - item > The Store < /button>
   //         < /mat-menu>
-  constructor() {}
+  constructor(private _projectsService: ProjectsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.projects = this._projectsService.getProjects();
+  }
 }
